@@ -1,0 +1,176 @@
+﻿/* Convert to LESS */
+/* PER TAG's */
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+div {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+h6 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+h5 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+/*Per classes related to tags */
+div.main-row {
+    height: 520px;
+}
+div.main-row-column {
+    height: 100%;
+    background-color: #F2F2F2;
+    border: solid 1px;
+}
+div.file-list-container {
+    width: 100%;
+    height: 90%;
+}
+form.file-selection-form {
+    height: 90%;
+}
+select.files-list {
+    width: 90%;
+    height: 90%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+div.params-file-group {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    height: 45%;
+}
+textarea.param-file-block {
+    width: 90%;
+    overflow-x: auto;
+    overflow-y: auto;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    resize: none;
+}
+button#set-params-btn {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+}
+select.param-file-displayname {
+    height: 10%;
+    /*font-family: 'Roboto', sans-serif;
+    font-size: 12px;*/
+}
+select.param-file-description {
+    height: 15%;
+    /*font-family: 'Roboto', sans-serif;
+    font-size: 12px;*/
+}
+select.param-file-content {
+    height: 45%;
+    /*font-family: 'Roboto', sans-serif;
+    font-size: 12px;*/
+}
+button.files-download-btn {
+    height: 30px;
+    /*width: 25px;*/
+    margin-top: 10px;
+    margin-right: 10%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+button.modal-dialog-button {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+button#generate-report-btn {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+/* Merge 2gether line & short form items classes*/
+input.line-form-item {
+    margin-right: 10px;
+    margin-left: 5px;
+    width: 80px;
+}
+input.short-form-item {
+    width: 25px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+div.files-list-row {
+    padding-left: 10px;
+    height: 50%;
+}
+
+div.data-source-row {
+    margin-bottom: 10px;
+}
+
+label#data-source-type-label {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+div.modal-header-group {
+    display: flex;
+    flex-direction: row;
+}
+
+div.modal-close-button {
+    margin: 0;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+}
+
+div.data-source-cell-item {
+    padding: 0;
+}
+
+select#data-source-type {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+label#data-source-conn-str-label {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+input#data-source-conn-str {
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+}
+
+div.report-gen-row {
+    /*height: 40px;*/
+}
+
+input.modal-param-value-input {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px; 
+}
+
+select#report-type-item {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

@@ -1,0 +1,122 @@
+﻿@using System.Security.AccessControl
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using ReportGeneratorWeb.Models
+
+@model ReportGeneratorWeb.Models.ParametersModel
+@{
+    ViewBag.Title = $"Установка значений параметров для файла параметров: {Model.ParametersFile}";
+    ViewBag.Parameters = @Model;
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div class="modal-content">
+    <div class="modal-header modal-header-group">
+        <button style="margin: 0; width: 20px; height: 20px; padding: 0;"type="button"
+                class="btn btn-outline-dark modal-dialog-button modal-close-button"
+                data-dismiss="modal">
+            <i class="fas fa-times"></i>
+        </button>
+        <h6 class="modal-title" style="margin-left: 5px;"><b>@ViewBag.Title</b></h6>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div>
+                <table class="table table-bordered" id="params-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Имя параметра:</th>
+                            <th scope="col">Вид параметра:</th>
+                            <th scope="col">Значение:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @{
+                        int colNumber = 1;
+                        foreach (ParameterValueModel parameter in Model.Parameters)
+                        {
+                            string nameId = $"param-name-{colNumber}";
+                            string typeId = $"param-type-{colNumber}";
+                            string valueId = $"param-value-{colNumber}";
+                            <tr>
+                                <td id = "@nameId">@parameter.Name</td>
+                                <td id = "@typeId">@parameter.Type</td>
+                                <td>
+                                    @Html.TextBox($"{@parameter.Name}_{@parameter.Type}", @parameter.Value.ToString(),
+                                        new {@class= "form-control modal-param-value-input", id=valueId })
+                                </td>
+                            </tr>
+                            colNumber++;
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" id="apply-parameters" class="btn btn-outline-dark modal-dialog-button">
+            ОК
+        </button>
+        <button type="button" id="close-parameters-edit-modal" class="btn btn-outline-dark modal-dialog-button" data-dismiss="modal">
+            Отмена
+        </button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // ************************************** GLOBAL VARS BLOCK (CONSTS) ****************************************/
+    var whereParamTypeValue = 1;
+    var orderByParamTypeValue = 2;
+    var groupByParamTypeValue = 3;
+    var storedProcedureParamTypeValue = 4;
+    // **********************************************************************************************************/
+    // *************************************** GUI HANDLER FUNCTION BLOCK ***************************************/
+    // var parametersModel = @Html.Raw(Json.Serialize((Model)));
+    var processedParametersValues = [];
+    // todo: on activate use processedParameters if values were set, otherwise model
+    // todo: convert parameter type && define if parameters related to stored procedure
+    $("#apply-parameters").click(function() {
+        var table = $("#params-table")[0];
+        var isStoredProcedure = false;
+        for (var paramNumber = 1; paramNumber < table.rows.length; paramNumber++) {
+            var valueEditId = "#param-value-" + paramNumber;
+            var nameId = "#param-name-" + paramNumber;
+            var typeId = "#param-type-" + paramNumber;
+
+            var name = $(nameId).text();
+            var type = convertParameterTypeToInt($(typeId).text());
+            var value = $(valueEditId).val();
+            console.log("save parameter: " + name + ", value: " + value);
+            processedParametersValues.push({ Type: type, Name: name, Value: value });
+            //if (type === storedProcedureParamTypeValue)
+            //    isStoredProcedure = true;
+        }
+
+        /*var assignedParameters = {
+            Parameters: processedParametersValues,
+            ParametersFile: "",
+            IsStoredProcedure: isStoredProcedure
+        }*/
+
+        $("#form-selected-params").val(JSON.stringify(processedParametersValues));
+        $("#set-params-modal").modal("hide");
+    });
+    // **********************************************************************************************************/
+    // ***************************************** SERVICE FUNCTION BLOCK *****************************************/
+    function convertParameterTypeToInt(typeValue) {
+        switch (typeValue.toLowerCase()) {
+            case "storedprocedure":
+                return storedProcedureParamTypeValue;
+            case "where":
+                return whereParamTypeValue;
+            case "order":
+                return orderByParamTypeValue;
+            case "group":
+                return groupByParamTypeValue;
+            
+            default:
+                return -1;
+        }
+    }
+    // **********************************************************************************************************/
+</script>

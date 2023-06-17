@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject></StartupObject>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <AssemblyName>ReportGeneratorWeb</AssemblyName>
+    <RootNamespace>ReportGeneratorWeb</RootNamespace>
+  </PropertyGroup>
+  <!--
+  <ItemGroup>
+    <Compile Remove="wwwroot\node_modules\**" />
+    <Content Remove="wwwroot\node_modules\**" />
+    <EmbeddedResource Remove="wwwroot\node_modules\**" />
+    <None Remove="wwwroot\node_modules\**" />
+  </ItemGroup>
+  -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="ReportsGenerator" Version="1.2.2" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
+    <PackageReference Include="System.Text.Json" Version="6.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+  <!-- Do not undestand what it is for ??? --> 
+  <ItemGroup>
+    <Folder Include="public\" />
+    <Folder Include="wwwroot\files\gen\" />
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\**" CopyToOutputDirectory="PreserveNewest" LinkBase="wwwroot\" />
+    <!--<Content Include="node_modules\font-awesome-5-css\webfonts\**" CopyToOutputDirectory="Always" LinkBase="wwwroot\webfonts\" />-->
+  </ItemGroup>
+  <ItemGroup>
+	  <None Include="node_modules\font-awesome-5-css\webfonts\**" CopyToOutputDirectory="Always" LinkBase="wwwroot\webfonts\" />
+  </ItemGroup>
+  <!-- WE MUST COPY FONT AWESOME woff and other fonts file to wwwroot, otherwise there is problem with fonts loading ... -->
+  <!--
+  <ItemGroup>
+    <None Include="node_modules\font-awesome-5-css\webfonts\**" CopyToOutputDirectory="Always" LinkBase="wwwroot\webfonts\" />
+  </ItemGroup>
+  -->
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="appsettings.Productuon.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>
